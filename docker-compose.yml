@@ -1,0 +1,153 @@
+version: '3'
+services:
+  backend:
+    image: vaibhawj/hygieia-api:latest
+    container_name: hygieia-api
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATA_MONGODB_HOST: mongodb
+      SPRING_DATA_MONGODB_PORT: 27017
+    volumes:
+      - ./logs:/hygieia/logs
+    links:
+      - mongoClient
+    depends_on:
+      - mongoClient
+
+  hygieia-ui:
+    image: vaibhawj/hygieia-ui:latest
+    ports:
+      - 3000:80
+    links:
+      - backend
+    environment:
+      API_HOST: hygieia-api
+      API_PORT: 8080
+  
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodbdata:/data/db
+  
+  mongoClient:
+    image: mongo:latest
+    container_name: mongoClient
+    links:
+      - mongodb
+    command: mongo --host mongodb --eval  "db.getSiblingDB('dashboarddb').createUser({user:'dashboarduser', pwd:'dbpassword', roles:[{role:'readWrite',db:'dashboarddb'}]});"
+    depends_on:
+      - mongodb
+  
+  sonar:
+    image: vaibhawj/hygieia-sonar:latest
+    environment:
+      MONGODB_HOST: mongodb
+      MONGODB_PORT: 27017
+      SONAR_CRON: 0 0/1 * * * *
+      SONAR_URL: ${SONAR_URL}
+      SONAR_USERNAME: ${ENTERPRISE_USERNAME}
+      SONAR_PASSWORD: ${ENTERPRISE_PASSWORD}
+      SONAR_VERSION: 6.7
+
+    volumes:
+      - ./logs:/hygieia/logs
+    links:
+      - mongoClient
+    depends_on:
+      - mongoClient
+  
+  gitlab-scm:
+    image: vaibhawj/hygieia-gitlab-scm:latest
+    environment:
+      MONGODB_HOST: mongodb
+      MONGODB_PORT: 27017
+      GITLAB_CRON: 0 0/1 * * * *
+      GITLAB_HOST: ${GITLAB_HOST}
+      GITLAB_PROTOCOL: https
+      GITLAB_API_TOKEN: ${GITLAB_API_TOKEN}
+
+    volumes:
+      - ./logs:/hygieia/logs
+    links:
+      - mongoClient
+    depends_on:
+      - mongoClient 
+
+  gitlab-build:
+    image: vaibhawj/hygieia-gitlab-build:latest
+    environment:
+      MONGODB_HOST: mongodb
+      MONGODB_PORT: 27017
+      GITLAB_CRON: 0 0/1 * * * *
+      GITLAB_HOST: ${GITLAB_HOST}
+      GITLAB_PROTOCOL: https
+      GITLAB_API_TOKEN: ${GITLAB_API_TOKEN}
+      GITLAB_USERNAME: ${ENTERPRISE_USERNAME}
+      GITLAB_PROJECT_IDS: ${GITLAB_PROJECT_IDS}
+
+    volumes:
+      - ./logs:/hygieia/logs
+    links:
+      - mongoClient
+    depends_on:
+      - mongoClient
+
+  gitlab-deploy:
+    image: vaibhawj/hygieia-gitlab-deploy:latest
+    environment:
+      MONGODB_HOST: mongodb
+      MONGODB_PORT: 27017
+      GITLAB_CRON: 0 0/1 * * * *
+      GITLAB_HOST: ${GITLAB_HOST}
+      GITLAB_PROTOCOL: https
+      GITLAB_API_TOKEN: ${GITLAB_API_TOKEN}
+      GITLAB_USERNAME: ${ENTERPRISE_USERNAME}
+      GITLAB_PROJECT_IDS: ${GITLAB_PROJECT_IDS}
+    volumes:
+      - ./logs:/hygieia/logs
+    links:
+      - mongoClient
+    depends_on:
+      - mongoClient
+
+  jira:
+    image: vaibhawj/hygieia-jira:latest
+    environment:
+      MONGODB_HOST: mongodb
+      MONGODB_PORT: 27017
+      JIRA_BASE_URL: ${JIRA_BASE_URL}
+      JIRA_CREDENTIALS: ${JIRA_CREDENTIALS}
+      JIRA_ISSUE_TYPE_NAMES: Story
+      JIRA_SPRINT_DATA_FIELD_NAME: customfield_10402
+      JIRA_EPIC_FIELD_NAME: customfield_10910
+      JIRA_STORY_POINTS_FIELD_NAME: customfield_11601
+      JIRA_TEAM_FIELD_NAME: customfield_13902
+      JIRA_PROJECT_IDS: ${JIRA_PROJECT_IDS}
+
+    volumes:
+      - ./logs:/hygieia/logs
+    links:
+      - mongoClient
+    depends_on:
+      - mongoClient
+  
+  score:
+    image: vaibhawj/hygieia-score:latest
+    environment:
+      MONGODB_HOST: mongodb
+      MONGODB_PORT: 27017
+
+    volumes:
+      - ./logs:/hygieia/logs
+    links:
+      - mongoClient
+    depends_on:
+      - mongoClient 
+    
+
+volumes:
+  mongodbdata:
