@@ -37,35 +37,35 @@ If you want to fix a bug or enhance/customize a component; you'll have the clone
 
 2. Clone the [api](https://github.com/Hygieia/api) project. Build the code with `mvn install` and then the docker image for the api project
 
-    `docker build -t vaibhawj/hygieia-api .`
+    `docker build -t thoughtworksindia/hygieia-api .`
 
 3. Clone the [sonar collector](https://github.com/Hygieia/hygieia-codequality-sonar-collector) project. Build the code with `mvn install` and then the docker image for the sonar collector
 
-    `docker build -t vaibhawj/hygieia-sonar .`
+    `docker build -t thoughtworksindia/hygieia-sonar .`
 
 4. Clone the [Hygieia](https://github.com/Hygieia/Hygieia) project and navigate into the UI directory. Build the code with `mvn install` and then the docker image for UI.
 
-   `docker build -t vaibhawj/hygieia-ui .`
+   `docker build -t thoughtworksindia/hygieia-ui .`
 
 5. Clone the [Gitlab SCM](https://github.com/kumarsi/hygieia-scm-gitlab-collector) project. Build the code with `mvn install` and then the docker image for the sonar collector
 
-    `docker build -t vaibhawj/hygieia-gitlab-scm .`
+    `docker build -t thoughtworksindia/hygieia-gitlab-scm .`
 
 6. Clone the [Jira collector](https://github.com/kumarsi/hygieia-feature-jira-collector) project. Build the code with `mvn install -DskipTests` (yes, tests are not important _now_) and then the docker image for the JIRA collector
 
-    `docker build -t vaibhawj/hygieia-jira .`
+    `docker build -t thoughtworksindia/hygieia-jira .`
 
 7. Clone the [Gitlab build collector](https://github.com/kumarsi/hygieia-build-gitlab-collector) project. Build the code with `mvn install -DskipTests` (yes, tests are not important here either) and then the docker image for the build collector
 
-    `docker build -t vaibhawj/hygieia-gitlab-build .`
+    `docker build -t thoughtworksindia/hygieia-gitlab-build .`
 
 8. Clone the [Deploy collector](https://github.com/kumarsi/hygieia-deploy-gitlab-collector) project. Build the code with `mvn install -DskipTests` (yes, tests are yet again not important _now_) and then the docker image for the deploy collector
 
-    `docker build -t vaibhawj/hygieia-gitlab-deploy .`
+    `docker build -t thoughtworksindia/hygieia-gitlab-deploy .`
 
 9.  Clone the [Score collector](https://github.com/Hygieia/hygieia-misc-score-collector) project. Build the code with `mvn install` and then the docker image for the score collector
 
-    `docker build -t vaibhawj/hygieia-score .`
+    `docker build -t thoughtworksindia/hygieia-score .`
 
 10. Run the following command
 
