@@ -1,7 +1,7 @@
 version: '3'
 services:
   backend:
-    image: vaibhawj/hygieia-api:latest
+    image: thoughtworksindia/hygieia-api:latest
     container_name: hygieia-api
     ports:
       - 8080:8080
@@ -16,7 +16,7 @@ services:
       - mongoClient
 
   hygieia-ui:
-    image: vaibhawj/hygieia-ui:latest
+    image: thoughtworksindia/hygieia-ui:latest
     ports:
       - 3000:80
     links:
@@ -43,7 +43,7 @@ services:
       - mongodb
   
   sonar:
-    image: vaibhawj/hygieia-sonar:latest
+    image: thoughtworksindia/hygieia-sonar:latest
     environment:
       MONGODB_HOST: mongodb
       MONGODB_PORT: 27017
@@ -61,7 +61,7 @@ services:
       - mongoClient
   
   gitlab-scm:
-    image: vaibhawj/hygieia-gitlab-scm:latest
+    image: thoughtworksindia/hygieia-gitlab-scm:latest
     environment:
       MONGODB_HOST: mongodb
       MONGODB_PORT: 27017
@@ -78,7 +78,7 @@ services:
       - mongoClient 
 
   gitlab-build:
-    image: vaibhawj/hygieia-gitlab-build:latest
+    image: thoughtworksindia/hygieia-gitlab-build:latest
     environment:
       MONGODB_HOST: mongodb
       MONGODB_PORT: 27017
@@ -97,7 +97,7 @@ services:
       - mongoClient
 
   gitlab-deploy:
-    image: vaibhawj/hygieia-gitlab-deploy:latest
+    image: thoughtworksindia/hygieia-gitlab-deploy:latest
     environment:
       MONGODB_HOST: mongodb
       MONGODB_PORT: 27017
@@ -115,7 +115,7 @@ services:
       - mongoClient
 
   jira:
-    image: vaibhawj/hygieia-jira:latest
+    image: thoughtworksindia/hygieia-jira:latest
     environment:
       MONGODB_HOST: mongodb
       MONGODB_PORT: 27017
@@ -136,7 +136,7 @@ services:
       - mongoClient
   
   score:
-    image: vaibhawj/hygieia-score:latest
+    image: thoughtworksindia/hygieia-score:latest
     environment:
       MONGODB_HOST: mongodb
       MONGODB_PORT: 27017
