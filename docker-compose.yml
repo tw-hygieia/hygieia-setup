@@ -61,7 +61,7 @@ services:
       - mongoClient
   
   gitlab-scm:
-    image: thoughtworksindia/hygieia-gitlab-scm:latest
+    image: thoughtworksindia/hygieia-gitlab-scm-collector:latest
     environment:
       MONGODB_HOST: mongodb
       MONGODB_PORT: 27017
@@ -78,7 +78,7 @@ services:
       - mongoClient 
 
   gitlab-build:
-    image: thoughtworksindia/hygieia-gitlab-build:latest
+    image: thoughtworksindia/hygieia-gitlab-build-collector:latest
     environment:
       MONGODB_HOST: mongodb
       MONGODB_PORT: 27017
@@ -97,7 +97,7 @@ services:
       - mongoClient
 
   gitlab-deploy:
-    image: thoughtworksindia/hygieia-gitlab-deploy:latest
+    image: thoughtworksindia/hygieia-gitlab-deploy-collector:latest
     environment:
       MONGODB_HOST: mongodb
       MONGODB_PORT: 27017
@@ -115,7 +115,7 @@ services:
       - mongoClient
 
   jira:
-    image: thoughtworksindia/hygieia-jira:latest
+    image: thoughtworksindia/hygieia-feature-jira-collector:latest
     environment:
       MONGODB_HOST: mongodb
       MONGODB_PORT: 27017
