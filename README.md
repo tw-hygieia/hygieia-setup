@@ -11,10 +11,11 @@ There are two main steps to setup Hygieia on your local machine after you clone 
 Copy the `.env.template` file to `.env`. Update a bunch of values on this file. These values will be looked up by the `docker-compose` utility.
   * ENTERPRISE_USERNAME - Your enterprise EUID
   * ENTERPRISE_PASSWORD - Password for the above
-  * GITLAB_API_TOKEN - Get an API token for your user from the Gitlab account settings
   * JIRA_CREDENTIALS - Run `echo -n <enterprise_username>:<enterprise_password> | base64` from shell and get the value
   * JIRA_PROJECT_IDS - A comma separated list of board ids on Jira that we want to monitor
   * GITLAB_PROJECT_IDS - A comma separated list of project ids on Gitlab that we want to monitor the build/deploy stats for
+  * GITLAB_API_TOKEN - A comma separated list of api tokens for your user from their Gitlab account settings.
+                       The api token should be given as corresponding to project id provided                        
   * SONAR_URL - The base URL for the sonar server, for eg; http://sonar.company.com
   * GITLAB_HOST - The base URL for gitlab server, for eg; https://gitlab.company.com
   * JIRA_BASE_URL - The base URL for JIRA, for eg; https://jira.company.com/jira
