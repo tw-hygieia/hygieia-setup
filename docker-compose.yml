@@ -138,7 +138,7 @@ services:
       - mongoClient
   
   score:
-    image: thoughtworksindia/hygieia-score:latest
+    image: thoughtworksindia/hygieia-score-collector:latest
     environment:
       MONGODB_HOST: mongodb
       MONGODB_PORT: 27017
