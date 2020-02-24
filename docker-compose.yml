@@ -68,7 +68,7 @@ services:
       GITLAB_CRON: 0 0/1 * * * *
       GITLAB_HOST: ${GITLAB_HOST}
       GITLAB_PROTOCOL: https
-      GITLAB_API_TOKEN: ${GITLAB_API_TOKEN}
+      GITLAB_DEFAULT_API_TOKEN: ${GITLAB_DEFAULT_API_TOKEN}
 
     volumes:
       - ./logs:/hygieia/logs
@@ -85,9 +85,10 @@ services:
       GITLAB_CRON: 0 0/1 * * * *
       GITLAB_HOST: ${GITLAB_HOST}
       GITLAB_PROTOCOL: https
-      GITLAB_API_TOKEN: ${GITLAB_API_TOKEN}
       GITLAB_USERNAME: ${ENTERPRISE_USERNAME}
       GITLAB_PROJECT_IDS: ${GITLAB_PROJECT_IDS}
+      GITLAB_API_TOKENS: ${GITLAB_API_TOKENS}
+
 
     volumes:
       - ./logs:/hygieia/logs
@@ -104,9 +105,10 @@ services:
       GITLAB_CRON: 0 0/1 * * * *
       GITLAB_HOST: ${GITLAB_HOST}
       GITLAB_PROTOCOL: https
-      GITLAB_API_TOKEN: ${GITLAB_API_TOKEN}
       GITLAB_USERNAME: ${ENTERPRISE_USERNAME}
       GITLAB_PROJECT_IDS: ${GITLAB_PROJECT_IDS}
+      GITLAB_API_TOKENS: ${GITLAB_API_TOKENS}
+
     volumes:
       - ./logs:/hygieia/logs
     links:
