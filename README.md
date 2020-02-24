@@ -66,7 +66,7 @@ If you want to fix a bug or enhance/customize a component; you'll have the clone
 
 9.  Clone the [Score collector](https://github.com/Hygieia/hygieia-misc-score-collector) project. Build the code with `mvn install` and then the docker image for the score collector
 
-    `docker build -t thoughtworksindia/hygieia-score .`
+    `docker build -t thoughtworksindia/hygieia-score-collector .`
 
 10. Run the following command
 
