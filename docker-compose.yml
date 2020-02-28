@@ -43,14 +43,13 @@ services:
       - mongodb
   
   sonar:
-    image: thoughtworksindia/hygieia-sonar:latest
+    image: thoughtworksindia/hygieia-codequality-sonar-collector:latest
     environment:
       MONGODB_HOST: mongodb
       MONGODB_PORT: 27017
       SONAR_CRON: 0 0/1 * * * *
       SONAR_URL: ${SONAR_URL}
-      SONAR_USERNAME: ${ENTERPRISE_USERNAME}
-      SONAR_PASSWORD: ${ENTERPRISE_PASSWORD}
+      SONAR_TOKEN: ${SONAR_TOKEN}
       SONAR_VERSION: 6.7
 
     volumes:
