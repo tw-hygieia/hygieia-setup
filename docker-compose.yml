@@ -77,7 +77,7 @@ services:
       - mongoClient 
 
   gitlab-build:
-    image: thoughtworksindia/hygieia-gitlab-build-collector:0.0.5
+    image: thoughtworksindia/hygieia-gitlab-build-collector:0.0.6
     environment:
       MONGODB_HOST: mongodb
       MONGODB_PORT: 27017
