@@ -18,6 +18,7 @@ Copy the `.env.template` file to `.env`. Update a bunch of values on this file. 
   * JIRA_PROJECT_IDS - A comma separated list of board ids on Jira that we want to monitor
   * GITLAB_PROJECT_IDS - A comma separated list of project ids on Gitlab that we want to monitor the build/deploy stats for
   * GITLAB_BUILD_STAGES - A comma separated list of stage names that should be considered when computing build time
+  * GITLAB_BRANCH_NAMES - A comma separated list of branch names that the pipeline data to be fetched for (This should be align with projectIds order)
   * SONAR_URL - The base URL for the sonar server, for eg; http://sonar.company.com
   * SONAR_TOKEN - Token for invoking the SONAR API
   * GITLAB_HOST - The base URL for gitlab server, for eg; https://gitlab.company.com
