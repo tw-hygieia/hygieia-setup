@@ -44,7 +44,7 @@ If you want to fix a bug or enhance/customize a component; you'll have the clone
 
     `docker build -t thoughtworksindia/hygieia-api .`
 
-3. Clone the [sonar collector](https://github.com/kumarsi/hygieia-codequality-sonar-collector) project. Build the code with `mvn install` and then the docker image for the sonar collector
+3. Clone the [sonar collector](https://github.com/tw-hygieia/hygieia-codequality-sonar-collector) project. Build the code with `mvn install` and then the docker image for the sonar collector
 
     `docker build -t thoughtworksindia/hygieia-codequality-sonar-collector .`
 
@@ -52,23 +52,23 @@ If you want to fix a bug or enhance/customize a component; you'll have the clone
 
    `docker build -t thoughtworksindia/hygieia-ui .`
 
-5. Clone the [Gitlab SCM](https://github.com/kumarsi/hygieia-scm-gitlab-collector) project. Build the code with `mvn install` and then the docker image for the sonar collector
+5. Clone the [Gitlab SCM](https://github.com/tw-hygieia/hygieia-scm-gitlab-collector) project. Build the code with `mvn install` and then the docker image for the sonar collector
 
     `docker build -t thoughtworksindia/hygieia-gitlab-scm-collector .`
 
-6. Clone the [Jira collector](https://github.com/kumarsi/hygieia-feature-jira-collector) project. Build the code with `mvn install -DskipTests` (yes, tests are not important _now_) and then the docker image for the JIRA collector
+6. Clone the [Jira collector](https://github.com/tw-hygieia/hygieia-feature-jira-collector) project. Build the code with `mvn install -DskipTests` (yes, tests are not important _now_) and then the docker image for the JIRA collector
 
     `docker build -t thoughtworksindia/hygieia-feature-jira-collector .`
 
-7. Clone the [Gitlab build collector](https://github.com/kumarsi/hygieia-build-gitlab-collector) project. Build the code with `mvn install -DskipTests` (yes, tests are not important here either) and then the docker image for the build collector
+7. Clone the [Gitlab build collector](https://github.com/tw-hygieia/hygieia-build-gitlab-collector) project. Build the code with `mvn install -DskipTests` (yes, tests are not important here either) and then the docker image for the build collector
 
     `docker build -t thoughtworksindia/hygieia-gitlab-build-collector .`
 
-8. Clone the [Deploy collector](https://github.com/kumarsi/hygieia-deploy-gitlab-collector) project. Build the code with `mvn install -DskipTests` (yes, tests are yet again not important _now_) and then the docker image for the deploy collector
+8. Clone the [Deploy collector](https://github.com/tw-hygieia/hygieia-deploy-gitlab-collector) project. Build the code with `mvn install -DskipTests` (yes, tests are yet again not important _now_) and then the docker image for the deploy collector
 
     `docker build -t thoughtworksindia/hygieia-gitlab-deploy-collector .`
 
-9.  Clone the [Score collector](https://github.com/kumarsi/hygieia-misc-score-collector) project. Build the code with `mvn install` and then the docker image for the score collector
+9.  Clone the [Score collector](https://github.com/tw-hygieia/hygieia-misc-score-collector) project. Build the code with `mvn install` and then the docker image for the score collector
 
     `docker build -t thoughtworksindia/hygieia-score-collector .`
 
