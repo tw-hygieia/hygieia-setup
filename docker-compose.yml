@@ -1,7 +1,7 @@
 version: '3'
 services:
   backend:
-    image: thoughtworksindia/hygieia-api:latest
+    image: thoughtworksindia/hygieia-api:0.1.1
     container_name: hygieia-api
     ports:
       - 8080:8080
@@ -24,7 +24,7 @@ services:
     environment:
       API_HOST: hygieia-api
       API_PORT: 8080
-  
+
   mongodb:
     image: mongo:latest
     container_name: mongodb
@@ -32,7 +32,7 @@ services:
       - 27017:27017
     volumes:
       - mongodbdata:/data/db
-  
+
   mongoClient:
     image: mongo:latest
     container_name: mongoClient
@@ -41,13 +41,13 @@ services:
     command: mongo --host mongodb --eval  "db.getSiblingDB('dashboarddb').createUser({user:'dashboarduser', pwd:'dbpassword', roles:[{role:'readWrite',db:'dashboarddb'}]});"
     depends_on:
       - mongodb
-  
+
   sonar:
-    image: thoughtworksindia/hygieia-codequality-sonar-collector:latest
+    image: thoughtworksindia/hygieia-codequality-sonar-collector:0.1.0
     environment:
       MONGODB_HOST: mongodb
       MONGODB_PORT: 27017
-      SONAR_CRON: 0 0/1 * * * *
+      SONAR_CRON: ${SONAR_CRON}
       SONAR_URL: ${SONAR_URL}
       SONAR_TOKEN: ${SONAR_TOKEN}
       SONAR_VERSION: 6.7
@@ -58,13 +58,13 @@ services:
       - mongoClient
     depends_on:
       - mongoClient
-  
+
   gitlab-scm:
-    image: thoughtworksindia/hygieia-gitlab-scm-collector:latest
+    image: thoughtworksindia/hygieia-gitlab-scm-collector:0.2.0
     environment:
       MONGODB_HOST: mongodb
       MONGODB_PORT: 27017
-      GITLAB_CRON: 0 0/1 * * * *
+      GITLAB_CRON: ${GITLAB_CRON}
       GITLAB_HOST: ${GITLAB_HOST}
       GITLAB_PROTOCOL: https
       GITLAB_DEFAULT_API_TOKEN: ${GITLAB_DEFAULT_API_TOKEN}
@@ -74,14 +74,14 @@ services:
     links:
       - mongoClient
     depends_on:
-      - mongoClient 
+      - mongoClient
 
   gitlab-build:
-    image: thoughtworksindia/hygieia-gitlab-build-collector:latest
+    image: thoughtworksindia/hygieia-gitlab-build-collector:0.2.0
     environment:
       MONGODB_HOST: mongodb
       MONGODB_PORT: 27017
-      GITLAB_CRON: 0 0/1 * * * *
+      GITLAB_CRON: ${GITLAB_CRON}
       GITLAB_HOST: ${GITLAB_HOST}
       GITLAB_PROTOCOL: https
       GITLAB_USERNAME: ${ENTERPRISE_USERNAME}
@@ -98,11 +98,11 @@ services:
       - mongoClient
 
   gitlab-deploy:
-    image: thoughtworksindia/hygieia-gitlab-deploy-collector:latest
+    image: thoughtworksindia/hygieia-gitlab-deploy-collector:0.2.0
     environment:
       MONGODB_HOST: mongodb
       MONGODB_PORT: 27017
-      GITLAB_CRON: 0 0/1 * * * *
+      GITLAB_CRON: ${GITLAB_CRON}
       GITLAB_HOST: ${GITLAB_HOST}
       GITLAB_PROTOCOL: https
       GITLAB_USERNAME: ${ENTERPRISE_USERNAME}
@@ -117,7 +117,7 @@ services:
       - mongoClient
 
   jira:
-    image: thoughtworksindia/hygieia-feature-jira-collector:latest
+    image: thoughtworksindia/hygieia-feature-jira-collector:0.1.0
     environment:
       MONGODB_HOST: mongodb
       MONGODB_PORT: 27017
@@ -129,6 +129,7 @@ services:
       JIRA_STORY_POINTS_FIELD_NAME: customfield_11601
       JIRA_TEAM_FIELD_NAME: customfield_13902
       JIRA_PROJECT_IDS: ${JIRA_PROJECT_IDS}
+      JIRA_CRON: ${JIRA_CRON}
 
     volumes:
       - ./logs:/hygieia/logs
@@ -136,9 +137,9 @@ services:
       - mongoClient
     depends_on:
       - mongoClient
-  
+
   score:
-    image: thoughtworksindia/hygieia-score-collector:latest
+    image: thoughtworksindia/hygieia-score-collector:0.1.0
     environment:
       MONGODB_HOST: mongodb
       MONGODB_PORT: 27017
@@ -148,8 +149,7 @@ services:
     links:
       - mongoClient
     depends_on:
-      - mongoClient 
-    
+      - mongoClient
 
 volumes:
   mongodbdata:
