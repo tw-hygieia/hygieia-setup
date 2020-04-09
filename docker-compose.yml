@@ -68,6 +68,7 @@ services:
       GITLAB_HOST: ${GITLAB_HOST}
       GITLAB_PROTOCOL: https
       GITLAB_DEFAULT_API_TOKEN: ${GITLAB_DEFAULT_API_TOKEN}
+      GITLAB_IGNORED_BUILD_STAGES: ${GITLAB_IGNORED_BUILD_STAGES}
 
     volumes:
       - ./logs:/hygieia/logs
